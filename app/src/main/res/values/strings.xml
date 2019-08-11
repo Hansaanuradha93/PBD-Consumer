@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">Consumer</string>
+    <string name="send_to">Consumer</string>
 </resources>
