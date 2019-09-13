@@ -3,14 +3,9 @@ package com.example.hansaanuradha.consumer
 import android.content.Intent
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
 import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
-import java.util.*
-
-
-
 
 
 class MainActivity : AppCompatActivity() {
@@ -24,15 +19,18 @@ class MainActivity : AppCompatActivity() {
         val inputText = findViewById<EditText>(R.id.wholeNumberEditText)
 
         // Views for multiple numbers input
-        val comaSeparatedEditText = findViewById<EditText>(R.id.comaSeparatedWholeNumbersEditText)
+        val commaSeparatedEditText = findViewById<EditText>(R.id.comaSeparatedWholeNumbersEditText)
         val sendNumbersButton = findViewById<Button>(R.id.sendNumbersButton)
 
-        // Onclick listeners
+        // Onclick listener for sendButton
         sendButton.setOnClickListener {
 
+            // Get the input number value
             val numberString = inputText.getText().toString()
 
+            // Check whether text box is not empty
             if (!numberString.isNullOrEmpty()) {
+                // Send the data to the Producer application
                 val sendIntent = Intent()
                 sendIntent.action = Intent.ACTION_SEND
                 sendIntent.putExtra("SingleNumber", numberString)
@@ -44,13 +42,15 @@ class MainActivity : AppCompatActivity() {
 
         }
 
+        // Onclick listener for sendNumbersButton
         sendNumbersButton.setOnClickListener {
-            Log.v("Numbers", comaSeparatedEditText.getText().toString())
 
-            val numbersString = comaSeparatedEditText.getText().toString()
+            // Get the comma separated input
+            val numbersString = commaSeparatedEditText.getText().toString()
 
+            // Check whether text box is not empty
             if (!numbersString.isNullOrEmpty()) {
-
+                // Send the data to the Producer application
                 val sendIntent = Intent()
                 sendIntent.action = Intent.ACTION_SEND
                 sendIntent.putExtra("MultipleNumbers", numbersString)
@@ -62,8 +62,6 @@ class MainActivity : AppCompatActivity() {
 
         }
 
-
-        // TODO: - Pass this as a whole string to Producer, then split it, Get the result and convert it into a String in the Producer, Then send it back to the Consumer
 
     }
 
